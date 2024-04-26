@@ -20,8 +20,6 @@ class Server(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(b'POST request received with data: ' + Message)
         print(Message)
-
-# vad händer om massage inte ändras?! då  måste jag skicka tillbaka massage som
     def reading_the_response(self,content_length):
         post_data = self.rfile.read(content_length)
         Message=bytes(post_data)
