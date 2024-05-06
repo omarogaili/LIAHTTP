@@ -1,13 +1,11 @@
 # import the necessary modules 
 from http.server import BaseHTTPRequestHandler, HTTPServer # because the RPi i a server so i need to import http.server module
 import http.client # and http.client module because it's going to be a client for the main server (Server_http.py)
-HOST = '10.247.162.50'
+HOST = '192.168.31.6'
+HOST_Server='192.168.30.97' # but your static ip-adress here, than your client should listen for the IP 
 PORT_AS_SERVER = 4444
 PORT_AS_CLIENT = 3333
-
-HOST = '10.247.162.50'
-PORT_AS_SERVER = 4444
-PORT_AS_CLIENT = 3333
+ 
 
 class RPi_HTTPHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -46,8 +44,8 @@ class RPi_HTTPHandler(BaseHTTPRequestHandler):
         self.wfile.write(client_response_data.encode())
 
 def run_server():
-    server = HTTPServer((HOST, PORT_AS_SERVER), RPi_HTTPHandler)
-    print(f"Server now running at {HOST}:{PORT_AS_SERVER}")
+    server = HTTPServer((HOST_Server, PORT_AS_SERVER), RPi_HTTPHandler)
+    print(f"Server now running at {HOST_Server}:{PORT_AS_SERVER}")
     server.serve_forever()
 
 if __name__ == "__main__":

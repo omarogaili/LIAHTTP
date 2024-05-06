@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-HOST = '10.247.162.50'
+HOST = '192.168.31.10'
 PORT = 3333
 Message= b'8'
 

