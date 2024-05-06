@@ -1,20 +1,31 @@
 *** Settings ***
 Library     RequestsLibrary
+# Library      Client.py    http.client.HTTPConnection
 
 *** Variables ***
-${endPoint}     http://192.168.1.240:3333 
-${response}
-${RPi_client}   http://192.168.30.97:4444
+${endPoint}     http://192.168.31.10:3333 
+${RPi_client}   http://192.168.31.10:4444
+${Client}       http://192.168.31.10:4444
 
 *** Test Cases ***
-Test 1
+Test Successful Response from Server
+    [Documentation]    Test to verify successful response from the server
     ${response} =    Get   ${endPoint}
-    #in the test blow i check if I get a response from the server
     Should Be Equal As Strings  ${response.status_code}    200 
-    Log    ${response.content}        # Eller innehållet i svaret
-    Should Be Equal As Strings    ${response.content}   8  # using Should be Equal As Strings and  response.content  to check if the server sending 8 as i expected
+    Log    ${response.content}     
 
-Test 2
+Test Successful Communication with RPi Client
+    [Documentation]    Test to verify successful communication with RPi client
     ${response} =    Get   ${RPi_client}
-    Log    ${response.status_code}    # Du kan logga statuskoden om
-    Log    ${response.content}        # Eller innehållet i svaret
+    Should Be Equal As Strings  ${response.status_code}    200 
+    Log    ${response.content}   
+
+Test Zone 3 Handling in Client
+    [Documentation]    Test to verify handling of Zone 3 in client
+    ${response} =    Get     ${RPi_client}  
+    Log    ${response.text}
+    Should Be Equal As Strings  ${response.content}    open gate   
+Test Zone 1 or 2 Handling in Client
+    [Documentation]    Test to verify handling of Zone 1 or Zone 2 in client
+    ${response} =    Get   ${RPi_client}
+    Should Be Equal As Strings  ${response.content}    do not open 
