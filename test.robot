@@ -4,8 +4,8 @@ Library     RequestsLibrary
 
 *** Variables ***
 ${endPoint}     http://192.168.31.10:3333 
-${RPi_client}   http://192.168.31.10:4444
-${Client}       http://192.168.31.10:4444
+${RPi_client}   http://192.168.30.97:4444
+${Client}       http://192.168.30.97:4444
 
 *** Test Cases ***
 Test Successful Response from Server
