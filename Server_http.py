@@ -2,7 +2,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import random
 import time
 
-HOST = '192.168.31.10'
+HOST = '192.168.1.99'
 PORT = 3333
 
 class Server(BaseHTTPRequestHandler):
