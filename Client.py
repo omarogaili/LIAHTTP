@@ -81,7 +81,7 @@ class MotionSensorClient:
 
 if __name__ == "__main__":
     
-    HOST = '192.168.1.99'
+    HOST = '192.168.1.155'
     PORT = 4444
     motion_sensor = MotionSensorClient(HOST, PORT)
     motion_sensor.detect_motion()
