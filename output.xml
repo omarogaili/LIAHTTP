@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-08T08:35:53.621914" rpa="false" schemaversion="5">
-<suite id="s1" name="Test" source="/home/omar/Desktop/Desktop-omar/lia/test.robot">
-<test id="s1-t1" name="Test Successful Communication with RPi Client" line="17">
-<kw name="GET" owner="RequestsLibrary">
-<msg time="2024-05-08T08:35:53.686273" level="INFO">GET Request : url=http://192.168.30.97:4444/ 
+<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-12T16:00:24.471463" rpa="false" schemaversion="5">
+<suite id="s1" name="Server Test" source="/home/omar/Desktop/Desktop-omar/lia/server_test.robot">
+<test id="s1-t1" name="Test Motion Detection" line="29">
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-05-12T16:00:24.591128" level="INFO">POST Request : url=http://192.168.1.155:4444/ 
  path_url=/ 
- headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
- body=None 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '6'} 
+ body=motion 
  </msg>
-<msg time="2024-05-08T08:35:53.687096" level="INFO">GET Response : url=http://192.168.30.97:4444/ 
+<msg time="2024-05-12T16:00:24.592338" level="INFO">POST Response : url=http://192.168.1.155:4444/ 
  status=200, reason=OK 
- headers={'Server': 'BaseHTTP/0.6 Python/3.11.2', 'Date': 'Wed, 08 May 2024 06:35:53 GMT', 'Content-type': 'text/html'} 
- body=ID: 1841, Time: 2024-05-08 08:35:53, Zone: 1 
+ headers={'Server': 'BaseHTTP/0.6 Python/3.11.2', 'Date': 'Sun, 12 May 2024 14:00:24 GMT', 'Content-type': 'text/html'} 
+ body=ID: 7599, Time: 2024-05-12 16:00:24 
  </msg>
-<msg time="2024-05-08T08:35:53.687334" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2024-05-12T16:00:24.592874" level="INFO">${response} = &lt;Response [200]&gt;</msg>
 <var>${response}</var>
-<arg>${RPi_client}</arg>
-<doc>Sends a GET request.</doc>
-<status status="PASS" start="2024-05-08T08:35:53.671422" elapsed="0.015995"/>
+<arg>${RPi_client_endpoint}</arg>
+<arg>data=motion</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-05-12T16:00:24.556168" elapsed="0.036880"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2024-05-08T08:35:53.688305" level="INFO">Argument types are:
+<msg time="2024-05-12T16:00:24.594250" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;class 'str'&gt;</msg>
 <arg>${response.status_code}</arg>
 <arg>200</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2024-05-08T08:35:53.687786" elapsed="0.000655"/>
+<status status="PASS" start="2024-05-12T16:00:24.593450" elapsed="0.001240"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-05-08T08:35:53.689044" level="INFO">ID: 1841, Time: 2024-05-08 08:35:53, Zone: 1</msg>
+<msg time="2024-05-12T16:00:24.595939" level="INFO">ID: 7599, Time: 2024-05-12 16:00:24</msg>
 <arg>${response.content}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-05-08T08:35:53.688657" elapsed="0.000492"/>
+<status status="PASS" start="2024-05-12T16:00:24.595195" elapsed="0.000952"/>
 </kw>
-<doc>Test to verify successful communication with RPi client</doc>
-<status status="PASS" start="2024-05-08T08:35:53.670760" elapsed="0.018602"/>
+<doc>Test motion detection functionality</doc>
+<status status="PASS" start="2024-05-12T16:00:24.555343" elapsed="0.041314"/>
 </test>
-<status status="PASS" start="2024-05-08T08:35:53.624197" elapsed="0.066325"/>
+<status status="PASS" start="2024-05-12T16:00:24.474774" elapsed="0.123252"/>
 </suite>
 <statistics>
 <total>
@@ -46,7 +47,7 @@
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Test">Test</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Server Test">Server Test</stat>
 </suite>
 </statistics>
 <errors>
