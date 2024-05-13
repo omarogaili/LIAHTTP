@@ -1,11 +1,26 @@
+# in this test i use the server.py file to test if we  have any connection between the  server and the RPi.
+#by using the opratingSystem and the Process libraries
+
+# test number one starting the server.py, by using process library, the Keyword Run Process and the language we using and the name of the file and alias server
+# test number two testing if we have a response from the server did we get a response with 200 
+# test number three testing if we have any response from the RPi did we get a response with 200 
+# test number four testing if we send data to the RPi did we get it forward to the RPi. in this test we are the client and we sending motion to the RPi. what i want to test is :
+## 1. if the RPi get this data.
+## 2. if the RPi send this data forward to the Server
+# what we can do to make this test more compliet is to test if this data was sent to the server. because now i start the server.py and when i run this test i open the server.py terminal and wait until i get a motion in the server.py terminal 
+# than i know if the RPi send motion to the server.py. 
+# ******* Problems with this test *******
+# i could not stop the server and that is an issue because if we cant stop the server from running than we cant  start the server from the Python file.
+
+
 *** Settings ***
 Library     OperatingSystem
 Library     RequestsLibrary
 Library     Process
 
 *** Variables ***
-${server_endpoint}     http://192.168.1.99:5555
-${RPi_client_endpoint}   http://192.168.1.155:4444
+${server_endpoint}     http://192.168.31.20:3333
+${RPi_client_endpoint}   http://192.168.30.97:4444
 
 *** Test Cases ***
 *** Test Cases ***
