@@ -2,8 +2,9 @@
 Library     RequestsLibrary
 
 *** Variables ***
-${server_endpoint}     http://192.168.1.99:5555
-${RPi_client_endpoint}   http://192.168.1.155:4444
+${server_endpoint}     http://192.168.31.20:3333
+${RPi_client_endpoint}   http://192.168.30.97:4444
+${Client}                http://192.168.30.97:4444
 
 *** Test Cases ***
 Test Successful Response from Server
@@ -23,3 +24,7 @@ Test Motion Detection
     ${response} =    POST     ${RPi_client_endpoint}    data=motion
     Should Be Equal As Strings    ${response.status_code}    200
     Log    ${response.content}
+Test Data From Client
+    [Documentation]  Testing the data from the client 
+    ${response} =      GET     ${Client}  data= motion
+    Should Be Equal As Strings    ${response.status_code}    200

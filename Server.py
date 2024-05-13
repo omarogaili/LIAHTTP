@@ -2,8 +2,8 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import random
 import time
 
-HOST = '192.168.1.99'
-PORT = 5555
+HOST = '192.168.31.20'
+PORT = 3333
 
 class Server(BaseHTTPRequestHandler):
     def do_GET(self):

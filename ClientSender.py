@@ -34,10 +34,10 @@ class ClientReceiver(http.client.HTTPConnection):
         self.request('GET', '/', headers={"Host": self.host})
         response = self.getresponse()
         data = response.read().decode()
-        print(f"{response.status} {response.reason}, Received: {data}")
+        print(f" Received: {data}")
 
 def main():
-    host = '192.168.1.155'
+    host = '192.168.30.97'
     port = 4444
 
     sender = ClientSender(host, port)
