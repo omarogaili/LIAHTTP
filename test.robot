@@ -1,10 +1,12 @@
 *** Settings ***
 Library     RequestsLibrary
+Library     ClientSimulator.py           192.168.30.97        4444
 
 *** Variables ***
-${server_endpoint}     http://192.168.31.20:3333
+${server_endpoint}       http://192.168.31.20:3333
 ${RPi_client_endpoint}   http://192.168.30.97:4444
 ${Client}                http://192.168.30.97:4444
+
 
 *** Test Cases ***
 Test Successful Response from Server
