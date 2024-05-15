@@ -2081,31 +2081,31 @@ storage = function () {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,0,[],[1,0,124],[],[[4,0,5,[],[1,51,72],[[0,6,7,0,8,9,10,0,[1,52,69],[[120,2,11],[121,2,12],[121,2,13]]],[0,14,15,0,16,17,0,0,[1,122,1],[[122,2,18]]],[0,19,15,0,20,21,0,0,[1,123,0],[[123,2,22]]]]]],[],[1,1,0,0]];
+window.output["suite"] = [1,2,3,0,[],[0,0,75],[],[[4,0,5,[],[0,64,10,6],[[0,7,8,0,9,10,11,0,[0,65,8],[[69,5,6]]],[0,12,13,0,14,15,0,0,[3,73,0],[]],[0,16,13,0,17,18,0,0,[3,74,0],[]]]]],[],[1,0,1,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*Server Test","*/home/omar/Desktop/Desktop-omar/lia/server_test.robot","*server_test.robot","*Test Motion Detection","*<p>Test motion detection functionality\x3c/p>","*POST","*RequestsLibrary","*<p>Sends a POST request.\x3c/p>","*${RPi_client_endpoint}    data=motion","*${response}","*POST Request : url=http://192.168.30.97:4444/ \n path_url=/ \n headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '6'} \n body=motion \n ","*POST Response : url=http://192.168.30.97:4444/ \n status=200, reason=OK \n headers={'Server': 'BaseHTTP/0.6 Python/3.11.2', 'Date': 'Mon, 13 May 2024 09:32:37 GMT', 'Content-type': 'text/html'} \n body=ID: 5588, Time: 2024-05-13 11:32:37 \n ","*${response} = &lt;Response [200]&gt;","*Should Be Equal As Strings","*BuiltIn","*<p>Fails if objects are unequal after converting them to strings.\x3c/p>","*${response.status_code}    200","*Argument types are:\n&lt;class 'int'&gt;\n&lt;class 'str'&gt;","*Log","*<p>Logs the given message with the given level.\x3c/p>","*${response.content}","*ID: 5588, Time: 2024-05-13 11:32:37"]);
+window.output["strings"] = window.output["strings"].concat(["*","*Server Test","*/home/omar/Desktop/Desktop-omar/lia/server_test.robot","*server_test.robot","*Test Successful Communication with RPi Client","*<p>Test to verify successful communication with RPi client\x3c/p>","*ConnectionError: HTTPConnectionPool(host='192.168.30.97', port=4444): Max retries exceeded with url: / (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x7cf024cca3f0&gt;: Failed to establish a new connection: [Errno 111] Connection refused'))","*GET","*RequestsLibrary","*<p>Sends a GET request.\x3c/p>","*${RPi_client_endpoint}","*${response}","*Should Be Equal As Strings","*BuiltIn","*<p>Fails if objects are unequal after converting them to strings.\x3c/p>","*${response.status_code}    200","*Log","*<p>Logs the given message with the given level.\x3c/p>","*${response.content}"]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:00:00","fail":0,"label":"All Tests","pass":1,"skip":0}],[],[{"elapsed":"00:00:00","fail":0,"id":"s1","label":"Server Test","name":"Server Test","pass":1,"skip":0}]];
+window.output["stats"] = [[{"elapsed":"00:00:00","fail":1,"label":"All Tests","pass":0,"skip":0}],[],[{"elapsed":"00:00:00","fail":1,"id":"s1","label":"Server Test","name":"Server Test","pass":0,"skip":0}]];
 </script>
 <script type="text/javascript">
 window.output["errors"] = [];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1715592757685;
+window.output["baseMillis"] = 1715685364651;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 126;
+window.output["generated"] = 78;
 </script>
 <script type="text/javascript">
 window.output["expand_keywords"] = null;
 </script>
 <script type="text/javascript">
-window.settings = {"defaultLevel":"INFO","minLevel":"INFO","reportURL":"report.html","rpa":false,"splitLogBase":"log","title":""};
+window.settings = {"defaultLevel":"INFO","minLevel":"FAIL","reportURL":"report.html","rpa":false,"splitLogBase":"log","title":""};
 </script>
 <title></title>
 </head>
