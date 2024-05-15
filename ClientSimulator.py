@@ -14,7 +14,7 @@ class ClientSimulator(http.client.HTTPConnection):
         self.motion_types = 'motion'
         self.Enter_Line = 'Enter Line'
         self.Exit_Line = 'Exit Line'
-        self.zones = ['sco 1', 'sco 2', 'sco 3', 'sco 4']
+        self.zones = ['sco 1', 'sco 2', 'sco 3', 'sco 4', 'Exit Gate']
         self.track_id = None
 
     def generate_motion_data(self):
