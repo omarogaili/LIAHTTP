@@ -1,44 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-13T11:32:37.682078" rpa="false" schemaversion="5">
-<suite id="s1" name="Server Test" source="/home/omar/Desktop/Desktop-omar/lia/server_test.robot">
-<test id="s1-t1" name="Test Motion Detection" line="40">
-<kw name="POST" owner="RequestsLibrary">
-<msg time="2024-05-13T11:32:37.804975" level="INFO">POST Request : url=http://192.168.30.97:4444/ 
- path_url=/ 
- headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '6'} 
- body=motion 
- </msg>
-<msg time="2024-05-13T11:32:37.805854" level="INFO">POST Response : url=http://192.168.30.97:4444/ 
- status=200, reason=OK 
- headers={'Server': 'BaseHTTP/0.6 Python/3.11.2', 'Date': 'Mon, 13 May 2024 09:32:37 GMT', 'Content-type': 'text/html'} 
- body=ID: 5588, Time: 2024-05-13 11:32:37 
- </msg>
-<msg time="2024-05-13T11:32:37.806093" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<var>${response}</var>
-<arg>${RPi_client_endpoint}</arg>
-<arg>data=motion</arg>
-<doc>Sends a POST request.</doc>
-<status status="PASS" start="2024-05-13T11:32:37.736932" elapsed="0.069298"/>
+<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-17T15:25:30.921304" rpa="false" schemaversion="5">
+<suite id="s1" name="Testomar" source="/home/omar/Desktop/Desktop-omar/Sesame2-sim/testomar.robot">
+<test id="s1-t1" name="Start Test" line="18">
+<kw name="Start Sensor" owner="SensorSimulatorLibrary">
+<status status="PASS" start="2024-05-17T15:25:30.938689" elapsed="0.000486"/>
 </kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2024-05-13T11:32:37.807390" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;class 'str'&gt;</msg>
-<arg>${response.status_code}</arg>
-<arg>200</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2024-05-13T11:32:37.806605" elapsed="0.000928"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2024-05-13T11:32:37.808083" level="INFO">ID: 5588, Time: 2024-05-13 11:32:37</msg>
-<arg>${response.content}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-05-13T11:32:37.807732" elapsed="0.000440"/>
-</kw>
-<doc>Test motion detection functionality</doc>
-<status status="PASS" start="2024-05-13T11:32:37.736259" elapsed="0.072064"/>
+<status status="PASS" start="2024-05-17T15:25:30.938160" elapsed="0.001382"/>
 </test>
-<status status="PASS" start="2024-05-13T11:32:37.684601" elapsed="0.124145"/>
+<status status="PASS" start="2024-05-17T15:25:30.923423" elapsed="0.016504"/>
 </suite>
 <statistics>
 <total>
@@ -47,7 +16,7 @@
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Server Test">Server Test</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Testomar">Testomar</stat>
 </suite>
 </statistics>
 <errors>

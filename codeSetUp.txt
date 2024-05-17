@@ -1,0 +1,35 @@
+Code Setup:
+
+Client.py:
+in this file i simulate sensor (motion sensor) the sensor will send to the server two tpy of data :
+
+1. Motion 2. No Motion. 
+
+Sensor configuration:
+the sensor have tow functions the do_Get function and the motion_detection.
+
+do_GET:
+this funktions is responsible for getting the response from the server and read it and send back information to the server.
+in the varibale data i read the response  and print it, the data which i get from the server. Than I send back information 
+to the server through the funktion motion_detection. 
+
+motion_detection:
+in this function i create a loop, inside this loop i have send the lis which i made for the sensor motion list. than i 
+have create a variable modified_data to get a random result from the motion list. and send this result back to the server with 
+a post. I used time sleep to make a delay 5sec and than send back to the server if we have a movement or not. 
+
+all this information we have will be send through the RPi and than from the RPi to the main server. 
+
+The purpose of doing this:
+
+what i think is, if i can simulate the sansor when the sensor send to the App that there is a movement, than the app will 
+response with a ID for this movement and the time when the movement has been discovered. and send this information back to
+the Client. than the Client send back to the Server that this ID is on this zone. 
+
+Zones: 
+zone 1 at the kiosk zone 
+zone 2 at the pay zone
+zone 3 Exit zone. 
+
+tha server will send a diffrent events to the cilent according the zone. all that its just to make a test cases. that we 
+can use them to test the system.  
