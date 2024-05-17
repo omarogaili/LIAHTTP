@@ -5,7 +5,6 @@ Library     RequestsLibrary
 Library     Process
 Library     Collections
 Library     NoMotionsimulator.py
-Library     SensorSimulator.py       192.168.30.97       4444
 *** Variables ***
 ${server_endpoint}       http://192.168.31.20:3333
 ${RPi_client_endpoint}   http://192.168.30.97:4444
@@ -28,10 +27,6 @@ Check Server Response
     ${response} =    GET    ${server_endpoint}
     Should Be Equal As Strings    ${response.status_code}    200
 
-Sending Data from the Sensor
-    SensorSimulator.generate_motion_data  live_data = {"message": "no motion"}
-    SensorSimulator.send_data   live_data
-
 *** Test Cases ***
 Start and Stop Server
     [Documentation]    Test to start Store_tracker App and that the server stops  after 5 seconds of runtime. 
@@ -47,11 +42,6 @@ Start and Stop Server
 #     Should Be Equal As Strings    ${response.status_code}    200 
 #     Log    ${response.content}
 
-Test Client Simulator
-    [Documentation]  Test to start the Client Simulator and verify its behavior
-    Sending Data from the Sensor
-
-
 # Test Sensor No Motion State
 #     [Documentation]    Test to verify sensor maintains 'no motion' state and does not trigger false motion events.
 #     # Simulate No Motion    30 minutes
@@ -62,11 +52,11 @@ Test Client Simulator
 #     Log    Sensor maintained no motion state for 30 minutes without false triggers
 
 
-# Test Motion Detection Events
-#     [Documentation]    Test correct handling of events created in sensor states 'motion' and 'no motion'.
-#     ${motion_response} =    POST    ${RPi_client_endpoint}/motion    json={"event": "motion", "track_id": "1234", "zone": "Enter Line"}
-#     Should Be Equal As Strings    ${motion_response.status_code}    200
-#     Should Contain    ${motion_response.content}    "motion"
+Test Motion Detection Events
+    [Documentation]    Test correct handling of events created in sensor states 'motion' and 'no motion'.
+    ${motion_response} =    POST    ${RPi_client_endpoint}/motion    json={"event": "motion", "track_id": "1234", "zone": "Enter Line"}
+    Should Be Equal As Strings    ${motion_response.status_code}    200
+    Should Contain    ${motion_response.content}    "motion"
 
 #     ${no_motion_response} =    POST    ${RPi_client_endpoint}/motion    json={"event": "no motion"}
 #     Should Be Equal As Strings    ${no_motion_response.status_code}    200

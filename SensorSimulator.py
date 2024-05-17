@@ -5,10 +5,11 @@ import time
 import random
 import threading
 import json
-import uuid 
+import uuid
 
 
-class ClientSimulator(http.client.HTTPConnection):
+
+class SensorSimulator(http.client.HTTPConnection):
     """
     This class simulates a sesame sensor. It generates and sends mocked customer flow data to the store tracker app. 
     """
@@ -63,13 +64,19 @@ class ClientSimulator(http.client.HTTPConnection):
         else:
             print("Server error")
 
+def Stop_Sensor(self):
+    host = '192.168.30.97'
+    port = 4444
+    client_simulator = SensorSimulator(host, port)
+    client_simulator.close()
+
 def main():
     host = '192.168.30.97'
     port = 4444
-
-    client_simulator = ClientSimulator(host, port)
+    client_simulator = SensorSimulator(host, port)
     motion_thread = threading.Thread(target=client_simulator.generate_motion_data)
     motion_thread.start()
+    client_simulator.close()
 
 if __name__ == "__main__":
     main()
