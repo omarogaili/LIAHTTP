@@ -1,119 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-17T10:14:05.521016" rpa="false" schemaversion="5">
-<suite id="s1" name="Sensortest" source="/home/omar/Desktop/Desktop-omar/lia/sensortest.robot">
+<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-17T11:25:45.880077" rpa="false" schemaversion="5">
+<suite id="s1" name="Sensortest" source="/home/omar/Desktop/Desktop-omar/Sesame2-sim/sensortest.robot">
 <test id="s1-t1" name="Start and Stop Server" line="36">
 <kw name="Start Server">
 <kw name="Run Process" owner="Process">
-<msg time="2024-05-17T10:14:05.578618" level="INFO">Starting process:
+<msg time="2024-05-17T11:25:45.907687" level="INFO">Starting process:
 python Store_tracker.py</msg>
-<msg time="2024-05-17T10:14:05.580829" level="INFO">Waiting for process to complete.</msg>
-<msg time="2024-05-17T10:14:05.623309" level="INFO">Process completed.</msg>
+<msg time="2024-05-17T11:25:45.909859" level="INFO">Waiting for process to complete.</msg>
 <arg>python</arg>
 <arg>Store_tracker.py</arg>
 <arg>alias=server</arg>
 <arg>shell=True</arg>
 <doc>Runs a process and waits for it to complete.</doc>
-<status status="PASS" start="2024-05-17T10:14:05.578498" elapsed="0.044948"/>
+<status status="FAIL" start="2024-05-17T11:25:45.907543" elapsed="65.092031">Execution terminated by signal</status>
 </kw>
 <doc>Start the server in a separate process.</doc>
-<status status="PASS" start="2024-05-17T10:14:05.578065" elapsed="0.045662"/>
+<status status="FAIL" start="2024-05-17T11:25:45.907127" elapsed="65.093111">Execution terminated by signal</status>
 </kw>
 <kw name="Wait For Server To Be Ready">
-<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
-<kw name="Check Server Response">
-<kw name="GET" owner="RequestsLibrary">
-<msg time="2024-05-17T10:14:05.627685" level="INFO">GET Request : url=http://192.168.31.20:3333/ 
- path_url=/ 
- headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
- body=None 
- </msg>
-<msg time="2024-05-17T10:14:05.627772" level="INFO">GET Response : url=http://192.168.31.20:3333/ 
- status=200, reason=OK 
- headers={'Server': 'BaseHTTP/0.6 Python/3.12.3', 'Date': 'Fri, 17 May 2024 08:14:05 GMT', 'Content-type': 'application/json'} 
- body=Server is running! 
- </msg>
-<msg time="2024-05-17T10:14:05.627856" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<var>${response}</var>
-<arg>${server_endpoint}</arg>
-<doc>Sends a GET request.</doc>
-<status status="PASS" start="2024-05-17T10:14:05.625116" elapsed="0.002756"/>
-</kw>
-<kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2024-05-17T10:14:05.628325" level="INFO">Argument types are:
-&lt;class 'int'&gt;
-&lt;class 'str'&gt;</msg>
-<arg>${response.status_code}</arg>
-<arg>200</arg>
-<doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2024-05-17T10:14:05.627969" elapsed="0.000393"/>
-</kw>
-<doc>Check if the server responds to a GET request.</doc>
-<status status="PASS" start="2024-05-17T10:14:05.624953" elapsed="0.003455"/>
-</kw>
-<arg>10x</arg>
-<arg>2s</arg>
-<arg>Check Server Response</arg>
-<doc>Runs the specified keyword and retries if it fails.</doc>
-<status status="PASS" start="2024-05-17T10:14:05.624696" elapsed="0.003739"/>
-</kw>
 <doc>Wait for the server to be ready to accept connections.</doc>
-<status status="PASS" start="2024-05-17T10:14:05.624273" elapsed="0.004191"/>
+<status status="NOT RUN" start="2024-05-17T11:26:51.001119" elapsed="0.000079"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2024-05-17T10:14:10.628854" level="INFO">Slept 5 seconds.</msg>
 <arg>5s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-05-17T10:14:05.628561" elapsed="5.000476"/>
+<status status="NOT RUN" start="2024-05-17T11:26:51.001565" elapsed="0.000048"/>
 </kw>
 <kw name="Stop Server">
-<kw name="Terminate Process" owner="Process">
-<msg time="2024-05-17T10:14:10.630408" level="INFO">Gracefully terminating process.</msg>
-<msg time="2024-05-17T10:14:10.630540" level="INFO">Process completed.</msg>
-<arg>server</arg>
-<doc>Stops the process gracefully or forcefully.</doc>
-<status status="PASS" start="2024-05-17T10:14:10.630123" elapsed="0.000479"/>
-</kw>
 <doc>Stop the server process.</doc>
-<status status="PASS" start="2024-05-17T10:14:10.629567" elapsed="0.001149"/>
+<status status="NOT RUN" start="2024-05-17T11:26:51.001935" elapsed="0.000038"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-05-17T10:14:10.631127" level="INFO">Server started and stopped successfully.</msg>
 <arg>Server started and stopped successfully.</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-05-17T10:14:10.630970" elapsed="0.000218"/>
+<status status="NOT RUN" start="2024-05-17T11:26:51.002268" elapsed="0.000036"/>
 </kw>
 <doc>Test to start Store_tracker App and that the server stops  after 5 seconds of runtime.</doc>
-<status status="PASS" start="2024-05-17T10:14:05.577576" elapsed="5.053874"/>
+<status status="FAIL" start="2024-05-17T11:25:45.906702" elapsed="65.096075">Execution terminated by signal</status>
 </test>
 <test id="s1-t2" name="Test Client Simulator" line="50">
-<kw name="Sending Data from the Sensor">
-<kw name="SensorSimulator.generate_motion_data">
-<msg time="2024-05-17T10:14:10.636499" level="FAIL">No keyword with name 'SensorSimulator.generate_motion_data' found.</msg>
-<arg>live_data = {"message": "no motion"}</arg>
-<status status="FAIL" start="2024-05-17T10:14:10.636427" elapsed="0.000170">No keyword with name 'SensorSimulator.generate_motion_data' found.</status>
-</kw>
-<kw name="SensorSimulator.send_data">
-<arg>live_data</arg>
-<status status="NOT RUN" start="2024-05-17T10:14:10.639704" elapsed="0.000032"/>
-</kw>
-<status status="FAIL" start="2024-05-17T10:14:10.632539" elapsed="0.007404">No keyword with name 'SensorSimulator.generate_motion_data' found.</status>
-</kw>
 <doc>Test to start the Client Simulator and verify its behavior</doc>
-<status status="FAIL" start="2024-05-17T10:14:10.631874" elapsed="0.008362">No keyword with name 'SensorSimulator.generate_motion_data' found.</status>
+<tag>robot:exit</tag>
+<status status="FAIL" start="2024-05-17T11:26:51.003256" elapsed="0.000861">Test execution stopped due to a fatal error.</status>
 </test>
-<status status="FAIL" start="2024-05-17T10:14:05.521590" elapsed="5.119502"/>
+<status status="FAIL" start="2024-05-17T11:25:45.880802" elapsed="65.124134"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="1" skip="0">All Tests</stat>
+<stat pass="0" fail="2" skip="0">All Tests</stat>
 </total>
 <tag>
+<stat pass="0" fail="1" skip="0" info="combined" combined="NOT robot:exit">NOT robot:exit</stat>
 </tag>
 <suite>
-<stat pass="1" fail="1" skip="0" id="s1" name="Sensortest">Sensortest</stat>
+<stat pass="0" fail="2" skip="0" id="s1" name="Sensortest">Sensortest</stat>
 </suite>
 </statistics>
 <errors>
-<msg time="2024-05-17T10:14:05.577210" level="ERROR">Error in file '/home/omar/Desktop/Desktop-omar/lia/sensortest.robot' on line 8: Library 'SensorSimulator' expected 0 arguments, got 2.</msg>
+<msg time="2024-05-17T11:25:45.898361" level="ERROR">Error in file '/home/omar/Desktop/Desktop-omar/Sesame2-sim/sensortest.robot' on line 4: Importing library 'RequestsLibrary' failed: ModuleNotFoundError: No module named 'RequestsLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  /home/omar/Desktop/Desktop-omar/Sesame2-sim/my_env/bin
+  /usr/lib/python312.zip
+  /usr/lib/python3.12
+  /usr/lib/python3.12/lib-dynload
+  /home/omar/Desktop/Desktop-omar/Sesame2-sim/my_env/lib/python3.12/site-packages</msg>
+<msg time="2024-05-17T11:25:45.906262" level="ERROR">Error in file '/home/omar/Desktop/Desktop-omar/Sesame2-sim/sensortest.robot' on line 8: Library 'SensorSimulator' expected 0 arguments, got 2.</msg>
 </errors>
 </robot>
