@@ -7,7 +7,12 @@ import threading
 import json
 import uuid 
 
+
 class ClientSimulator(http.client.HTTPConnection):
+    """
+    This class simulates a sesame sensor. It generates and sends mocked customer flow data to the store tracker app. 
+    """
+    
     def __init__(self, host, port):
         super().__init__(host, port)
         self.sensor_state= None

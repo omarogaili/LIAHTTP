@@ -1,0 +1,6 @@
+{
+    "robot.libraries.libdoc.needsArgs": [
+        "ClientSimulatorWrapper.py"
+    ]
+    
+}
