@@ -19,7 +19,7 @@ Library     RequestsLibrary
 Library     Process
 
 *** Variables ***
-${server_endpoint}     http://192.168.31.20:3333
+${server_endpoint}     http://192.168.31.24:3333
 ${RPi_client_endpoint}   http://192.168.30.97:4444
 
 *** Test Cases ***

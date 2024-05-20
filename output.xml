@@ -1,19 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-20T12:41:16.158627" rpa="false" schemaversion="5">
-<suite id="s1" name="SensorDataTest" source="/home/omar/Desktop/Desktop-omar/Sesame2-sim/tests/SensorDataTest.robot">
-<test id="s1-t1" name="Test moving between the zones" line="45">
-<kw name="moving between the zones">
+<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-20T14:17:47.755801" rpa="false" schemaversion="5">
+<suite id="s1" name="Sensortest" source="/home/omar/Desktop/Desktop-omar/Sesame2-sim/tests/sensortest.robot">
+<test id="s1-t1" name="Test Motion Detection Events" line="66">
+<kw name="Sending Right Data">
 <kw name="Send Data" owner="SensorSimulatorLibrary">
-<msg time="2024-05-20T12:41:16.190829" level="INFO">Received from server: {"response": "OK"}</msg>
+<msg time="2024-05-20T14:17:47.826132" level="INFO">Received from server: {"response": "OK"}</msg>
 <arg>${data}</arg>
-<status status="PASS" start="2024-05-20T12:41:16.177103" elapsed="0.014580"/>
+<status status="PASS" start="2024-05-20T14:17:47.816031" elapsed="0.010724"/>
 </kw>
-<arg>${live_data_moving_between_the_zones}</arg>
-<status status="PASS" start="2024-05-20T12:41:16.176567" elapsed="0.015310"/>
+<arg>${live_data}</arg>
+<status status="PASS" start="2024-05-20T14:17:47.815418" elapsed="0.011487"/>
 </kw>
-<status status="PASS" start="2024-05-20T12:41:16.176023" elapsed="0.016161"/>
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2024-05-20T14:17:47.839513" level="INFO">POST Request : url=http://192.168.30.97:4444/motion 
+ path_url=/motion 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '132'} 
+ body={"frames":[{"events":[{"type":"motion","attributes":{"Event Type":"Enter Line","geometry_name":"sco 1","Event End":"Exit Line"}}]}]} 
+ </msg>
+<msg time="2024-05-20T14:17:47.839744" level="INFO">POST Response : url=http://192.168.30.97:4444/motion 
+ status=200, reason=OK 
+ headers={'Server': 'BaseHTTP/0.6 Python/3.11.2', 'Date': 'Mon, 20 May 2024 12:17:47 GMT', 'Content-type': 'text/html'} 
+ body={"response": "OK"} 
+ </msg>
+<msg time="2024-05-20T14:17:47.839904" level="INFO">${motion_response} = &lt;Response [200]&gt;</msg>
+<var>${motion_response}</var>
+<arg>${RPi_client_endpoint}/motion</arg>
+<arg>${live_data}</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2024-05-20T14:17:47.827228" elapsed="0.012740"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-05-20T14:17:47.841046" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${motion_response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-05-20T14:17:47.840396" elapsed="0.000831"/>
+</kw>
+<doc>Test correct handling of events created in sensor states 'motion' and 'no motion'.</doc>
+<status status="PASS" start="2024-05-20T14:17:47.814878" elapsed="0.026649"/>
 </test>
-<status status="PASS" start="2024-05-20T12:41:16.161098" elapsed="0.031700"/>
+<status status="PASS" start="2024-05-20T14:17:47.757821" elapsed="0.084994"/>
 </suite>
 <statistics>
 <total>
@@ -22,7 +50,7 @@
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="SensorDataTest">SensorDataTest</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Sensortest">Sensortest</stat>
 </suite>
 </statistics>
 <errors>

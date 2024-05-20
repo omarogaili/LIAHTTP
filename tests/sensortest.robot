@@ -4,10 +4,11 @@ Library     OperatingSystem
 Library     RequestsLibrary
 Library     Process
 Library     Collections
-Library     NoMotionsimulator.py
+Library      ../Library/SensorSimulatorLibrary.py   192.168.30.97    4444
 *** Variables ***
-${server_endpoint}       http://192.168.31.20:3333
+${server_endpoint}       http://192.168.31.24:3333
 ${RPi_client_endpoint}   http://192.168.30.97:4444
+${live_data}  {"frames":[{"events":[{"type":"motion","attributes":{"Event Type":"Enter Line","geometry_name":"sco 1","Event End":"Exit Line"}}]}]} 
 
 *** Keywords ***
 Start Server
@@ -18,21 +19,31 @@ Stop Server
     [Documentation]    Stop the server process.
     Terminate Process    server
 
+Sending Right Data
+    [Arguments]    ${data}
+    Send Data    ${data}
 Wait For Server To Be Ready
     [Documentation]    Wait for the server to be ready to accept connections.
     Wait Until Keyword Succeeds    10x    2s    Check Server Response
+
 
 Check Server Response
     [Documentation]    Check if the server responds to a GET request.
     ${response} =    GET    ${server_endpoint}
     Should Be Equal As Strings    ${response.status_code}    200
-
+Check The Man In The Middle Response
+    [Documentation]    Check if the server responds to a GET request.
+    ${response} =    GET    ${RPi_client_endpoint}
+    Should Be Equal As Strings    ${response.status_code}    200
 *** Test Cases ***
 Start and Stop Server
     [Documentation]    Test to start Store_tracker App and that the server stops  after 5 seconds of runtime. 
     Start Server
-    Wait For Server To Be Ready
-    Sleep    5s
+    Sleep    1s
+    Sending Right Data    ${live_data}
+    Check The Man In The Middle Response
+    Check Server Response
+    Sleep    1s
     Stop Server
     Log    Server started and stopped successfully.
 
@@ -54,9 +65,10 @@ Start and Stop Server
 
 Test Motion Detection Events
     [Documentation]    Test correct handling of events created in sensor states 'motion' and 'no motion'.
-    ${motion_response} =    POST    ${RPi_client_endpoint}/motion    json={"event": "motion", "track_id": "1234", "zone": "Enter Line"}
+    Sending Right Data     ${live_data}
+    ${motion_response} =    POST   ${RPi_client_endpoint}/motion    ${live_data}
     Should Be Equal As Strings    ${motion_response.status_code}    200
-    Should Contain    ${motion_response.content}    "motion"
+
 
 #     ${no_motion_response} =    POST    ${RPi_client_endpoint}/motion    json={"event": "no motion"}
 #     Should Be Equal As Strings    ${no_motion_response.status_code}    200

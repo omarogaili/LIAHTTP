@@ -21,7 +21,12 @@ class SensorSimulatorLibrary:
     def Start_Sensor(self):
         motion_thread = threading.Thread(target=self.client_simulator.generate_motion_data)
         motion_thread.start()
-
+    
+    @keyword
+    def Stop_Sensor(self):
+        motion_thread = threading.Thread(target=self.client_simulator.generate_motion_data)
+        self.client_simulator.stop()
+        motion_thread.join()
 
     @keyword
     def send_data(self, data):
