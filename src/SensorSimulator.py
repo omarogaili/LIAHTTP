@@ -1,5 +1,5 @@
-# #this klass will send data to the server motion and no motion if the server get motion 
-# ## then the server will send back a id and a ask the server in which zone the motion was detected
+# # #this klass will send data to the server motion and no motion if the server get motion 
+# # ## then the server will send back a id and a ask the server in which zone the motion was detected
 import http.client
 import time
 import random
@@ -7,25 +7,24 @@ import threading
 import json
 import uuid
 
-
-
 class SensorSimulator(http.client.HTTPConnection):
     """
-    This class simulates a sesame sensor. It generates and sends mocked customer flow data to the store tracker app. 
+    This class simulates a sesame sensor. It generates and sends mocked customer flow data to the store tracker app.
     """
     
     def __init__(self, host, port):
         super().__init__(host, port)
-        self.sensor_state= None
+        self.sensor_state = None
         self.motion_types = 'motion'
         self.Enter_Line = 'Enter Line'
         self.Exit_Line = 'Exit Line'
         self.zones = ['sco 1', 'sco 2', 'sco 3', 'sco 4', 'Exit Gate']
         self.track_id = None
+        self.stop_event = threading.Event()
 
     def generate_motion_data(self):
-        while True:
-            self.sensor_state =  random.randint(0,1)
+        while not self.stop_event.is_set():
+            self.sensor_state = random.randint(0, 1)
             motion_type = random.choice(self.motion_types)
             zone_name = random.choice(self.zones)
             track_id = str(uuid.uuid4())
@@ -64,10 +63,8 @@ class SensorSimulator(http.client.HTTPConnection):
         else:
             print("Server error")
 
-def Stop_Sensor(self):
-    host = '192.168.30.97'
-    port = 4444
-    client_simulator = SensorSimulator(host, port)
+    def stop(self):
+        self.stop_event.set()
 
 def main():
     host = '192.168.30.97'
@@ -75,7 +72,8 @@ def main():
     client_simulator = SensorSimulator(host, port)
     motion_thread = threading.Thread(target=client_simulator.generate_motion_data)
     motion_thread.start()
-
+    
+    return client_simulator, motion_thread
 
 if __name__ == "__main__":
-    main()
+    client_simulator, motion_thread = main()
