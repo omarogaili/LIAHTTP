@@ -1,4 +1,4 @@
-import SensorSimulator
+import src.SensorSimulator as SensorSimulator
 class NoMotionsimulator:
     def __init__(self):
         self.message= "no motion"

@@ -3,7 +3,7 @@ import time
 import random
 import json
 
-HOST = '192.168.31.20'
+HOST = '192.168.31.24'
 PORT = 3333
 
 class Server(BaseHTTPRequestHandler):

@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-17T15:25:30.921304" rpa="false" schemaversion="5">
-<suite id="s1" name="Testomar" source="/home/omar/Desktop/Desktop-omar/Sesame2-sim/testomar.robot">
-<test id="s1-t1" name="Start Test" line="18">
-<kw name="Start Sensor" owner="SensorSimulatorLibrary">
-<status status="PASS" start="2024-05-17T15:25:30.938689" elapsed="0.000486"/>
+<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-20T12:41:16.158627" rpa="false" schemaversion="5">
+<suite id="s1" name="SensorDataTest" source="/home/omar/Desktop/Desktop-omar/Sesame2-sim/tests/SensorDataTest.robot">
+<test id="s1-t1" name="Test moving between the zones" line="45">
+<kw name="moving between the zones">
+<kw name="Send Data" owner="SensorSimulatorLibrary">
+<msg time="2024-05-20T12:41:16.190829" level="INFO">Received from server: {"response": "OK"}</msg>
+<arg>${data}</arg>
+<status status="PASS" start="2024-05-20T12:41:16.177103" elapsed="0.014580"/>
 </kw>
-<status status="PASS" start="2024-05-17T15:25:30.938160" elapsed="0.001382"/>
+<arg>${live_data_moving_between_the_zones}</arg>
+<status status="PASS" start="2024-05-20T12:41:16.176567" elapsed="0.015310"/>
+</kw>
+<status status="PASS" start="2024-05-20T12:41:16.176023" elapsed="0.016161"/>
 </test>
-<status status="PASS" start="2024-05-17T15:25:30.923423" elapsed="0.016504"/>
+<status status="PASS" start="2024-05-20T12:41:16.161098" elapsed="0.031700"/>
 </suite>
 <statistics>
 <total>
@@ -16,7 +22,7 @@
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Testomar">Testomar</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="SensorDataTest">SensorDataTest</stat>
 </suite>
 </statistics>
 <errors>
