@@ -68,7 +68,6 @@ def Stop_Sensor(self):
     host = '192.168.30.97'
     port = 4444
     client_simulator = SensorSimulator(host, port)
-    client_simulator.close()
 
 def main():
     host = '192.168.30.97'
@@ -76,7 +75,7 @@ def main():
     client_simulator = SensorSimulator(host, port)
     motion_thread = threading.Thread(target=client_simulator.generate_motion_data)
     motion_thread.start()
-    client_simulator.close()
+
 
 if __name__ == "__main__":
     main()

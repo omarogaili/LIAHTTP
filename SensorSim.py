@@ -1,6 +1,6 @@
 
 import threading
-import SensorSimulator
+import src.SensorSimulator as SensorSimulator
 
 def start_sensor_simulation():
     host = '192.168.30.97'

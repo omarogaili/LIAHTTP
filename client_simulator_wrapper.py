@@ -1,5 +1,5 @@
 
-import SensorSimulator
+import src.SensorSimulator as SensorSimulator
 
 class ClientSimulatorWrapper:
     def __init__(self, host, port):
