@@ -21,7 +21,6 @@ ${live_data_moving_between_the_zones}  {"frames":[{"events":[{"type":"motion","a
 *** Keywords ***
 Start Test
     Start Sensor
-
 Sending Right Data
     [Arguments]    ${data}
     Send Data    ${data}
@@ -35,7 +34,6 @@ Sending Wrong Data
 *** Test Cases ***
 Start Test
     Sending Right Data    ${live_data}
-
 Test wrong Data
     Sending Wrong Data    ${wrong_live_data}
 
