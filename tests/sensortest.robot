@@ -38,7 +38,7 @@
 Library     RequestsLibrary
 Library     Process
 Library     Collections
-Library      ../Library/SensorSimulatorLibrary.py   192.168.30.97    4444
+Library      ../Library/SensorSimulatorLibrary.py   ${IP_Host_Sensor}     ${Port_Sensor} 
 Library      ../Library/StoreTrackerLibrary.py
 
 *** Variables ***
@@ -46,6 +46,8 @@ ${server_endpoint}       http://192.168.31.24:3333
 ${RPi_client_endpoint}   http://192.168.30.97:4444
 ${man_in_the_Middle}     http://192.168.31.24:3333
 ${live_data}  {"frames":[{"events":[{"type":"motion","attributes":{"Event Type":"Enter Line","geometry_name":"sco 1","Event End":"Exit Line"}}]}]} 
+${IP_Host_Sensor}        192.168.30.97
+${Port_Sensor}            4444
 
 *** Keywords ***
 Start Server
@@ -57,7 +59,7 @@ Store Tracker Start
 Stop Server
     [Documentation]    Stop the server process.
     Terminate Process    server
-Sending Right Data
+Sending The Sensor Data
     [Arguments]    ${data}
     Send Data    ${data}
 Wait For Server To Be Ready
@@ -83,7 +85,7 @@ Start and Stop Server
     [Documentation]    Test to start Store_tracker App and that the server stops  after 5 seconds of runtime. 
     Store Tracker Start
     Start Server    
-    Sending Right Data    ${live_data}
+    Sending The Sensor Data    ${live_data}
     Check The Man In The Middle Response
     Check The Man In The Middle Response with POST request
     Check Server Response
@@ -110,9 +112,12 @@ Start and Stop Server
 
 Test Motion Detection Events
     [Documentation]    Test correct handling of events created in sensor states 'motion' and 'no motion'.
+    Store Tracker Start
+    Start Server 
     Sending Right Data     ${live_data}
     ${motion_response} =    POST   ${RPi_client_endpoint}/motion    ${live_data}
     Should Be Equal As Strings    ${motion_response.status_code}    200
+    Stop Server
 
 ##### this test is just for Omar and Robert #################
 #     ${no_motion_response} =    POST    ${RPi_client_endpoint}/motion    json={"event": "no motion"}
