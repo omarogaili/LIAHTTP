@@ -24,6 +24,7 @@ class SensorSimulator(http.client.HTTPConnection):
 # this method is creating a data and sending it to the store tracker as a json object
     def generate_motion_data(self):
         while not self.stop_event.is_set(): # create a loop to generate and send different data to the store tracker
+            self.sensor_state = random.randint(0, 1) # get a random number between 0 and 1
             zone_name = random.choice(self.zones) # get a random zone name 
             track_id = str(uuid.uuid4()) # get a random and unique ID for the motion which has been detected 
             if self.sensor_state == 1: # if the state of the sensor is 1 than we have a motion, and in this way so we are sending this data below 
@@ -82,7 +83,7 @@ class SensorSimulator(http.client.HTTPConnection):
                 time.sleep(5) # wait 5 seconds before trying reconnect again 
             except Exception as e:
                 print(f"Unexpected error during reconnection: {e}")
-                time.sleep(5) # wait 5 seconds before trying to reconnect again
+                time.sleep(5)
 # stop method for the Sensor (useful to run a test for the sensor!)
     def stop(self):
         self.stop_event.set()
