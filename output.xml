@@ -1,169 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-21T14:31:24.165563" rpa="false" schemaversion="5">
+<robot generator="Robot 7.0 (Python 3.12.3 on linux)" generated="2024-05-22T10:15:47.718824" rpa="false" schemaversion="5">
 <suite id="s1" name="Sensortest" source="/home/omar/Desktop/Desktop-omar/Sesame2-sim/tests/sensortest.robot">
-<test id="s1-t1" name="Start and Stop Server" line="51">
+<test id="s1-t1" name="Start and Stop Server" line="84">
 <kw name="Store Tracker Start">
 <kw name="Start Store Tracker" owner="StoreTrackerLibrary">
-<msg time="2024-05-21T14:31:24.238888" level="INFO">Server started</msg>
+<msg time="2024-05-22T10:15:47.798959" level="INFO">Server started</msg>
 <doc>Starts the Store Tracker server in a separate thread.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.234637" elapsed="0.004981"/>
+<status status="PASS" start="2024-05-22T10:15:47.794491" elapsed="0.005263"/>
 </kw>
 <doc>The Store tracker is running .</doc>
-<status status="PASS" start="2024-05-21T14:31:24.233951" elapsed="0.005852"/>
+<status status="PASS" start="2024-05-22T10:15:47.793988" elapsed="0.005943"/>
 </kw>
 <kw name="Start Server">
 <kw name="Start Process" owner="Process">
-<msg time="2024-05-21T14:31:24.240778" level="INFO">Starting process:
+<msg time="2024-05-22T10:15:47.800766" level="INFO">Starting process:
 python Store_tracker</msg>
 <arg>python</arg>
 <arg>Store_tracker</arg>
 <arg>alias=server</arg>
 <arg>shell=True</arg>
 <doc>Starts a new process on background.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.240522" elapsed="0.003673"/>
+<status status="PASS" start="2024-05-22T10:15:47.800555" elapsed="0.002758"/>
 </kw>
 <doc>Start the server in a separate process.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.240137" elapsed="0.004407"/>
+<status status="PASS" start="2024-05-22T10:15:47.800268" elapsed="0.003373"/>
 </kw>
-<kw name="Sending Right Data">
+<kw name="Sending The Sensor Data">
 <kw name="Send Data" owner="SensorSimulatorLibrary">
-<msg time="2024-05-21T14:31:24.257797" level="INFO">Received POST request with data: {"frames": [{"events": [{"type": "motion", "attributes": {"Event Type": "Enter Line", "geometry_name": "sco 1", "Event End": "Exit Line"}}]}]}
+<msg time="2024-05-22T10:15:47.817668" level="INFO">Received POST request with data: {"frames": [{"events": [{"type": "motion", "attributes": {"Event Type": "Enter Line", "geometry_name": "sco 1", "Event End": "Exit Line"}}]}]}
 Received from server: {"response": "OK"}</msg>
-<msg time="2024-05-21T14:31:24.258019" level="INFO">192.168.30.97 - - [21/May/2024 14:31:24] "POST / HTTP/1.1" 200 -</msg>
+<msg time="2024-05-22T10:15:47.817903" level="INFO">192.168.30.97 - - [22/May/2024 10:15:47] "POST / HTTP/1.1" 200 -</msg>
 <arg>${data}</arg>
-<status status="PASS" start="2024-05-21T14:31:24.245666" elapsed="0.012535"/>
+<status status="PASS" start="2024-05-22T10:15:47.804468" elapsed="0.013611"/>
 </kw>
 <arg>${live_data}</arg>
-<status status="PASS" start="2024-05-21T14:31:24.244969" elapsed="0.013408"/>
+<status status="PASS" start="2024-05-22T10:15:47.804051" elapsed="0.014194"/>
 </kw>
 <kw name="Check The Man In The Middle Response">
 <kw name="GET" owner="RequestsLibrary">
-<msg time="2024-05-21T14:31:24.273178" level="INFO">GET Request : url=http://192.168.30.97:4444/ 
+<msg time="2024-05-22T10:15:47.833474" level="INFO">GET Request : url=http://192.168.30.97:4444/ 
  path_url=/ 
  headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
  body=None 
  </msg>
-<msg time="2024-05-21T14:31:24.273579" level="INFO">GET Response : url=http://192.168.30.97:4444/ 
+<msg time="2024-05-22T10:15:47.834075" level="INFO">GET Response : url=http://192.168.30.97:4444/ 
  status=200, reason=OK 
- headers={'Server': 'BaseHTTP/0.6 Python/3.11.2', 'Date': 'Tue, 21 May 2024 12:31:24 GMT', 'Content-type': 'application/json'} 
+ headers={'Server': 'BaseHTTP/0.6 Python/3.11.2', 'Date': 'Wed, 22 May 2024 08:15:47 GMT', 'Content-type': 'application/json'} 
  body=Store tracker is running! 
  </msg>
-<msg time="2024-05-21T14:31:24.273725" level="INFO">192.168.30.97 - - [21/May/2024 14:31:24] "GET / HTTP/1.1" 200 -</msg>
-<msg time="2024-05-21T14:31:24.273987" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2024-05-22T10:15:47.834244" level="INFO">192.168.30.97 - - [22/May/2024 10:15:47] "GET / HTTP/1.1" 200 -</msg>
+<msg time="2024-05-22T10:15:47.834474" level="INFO">${response} = &lt;Response [200]&gt;</msg>
 <var>${response}</var>
 <arg>${RPi_client_endpoint}</arg>
 <doc>Sends a GET request.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.259353" elapsed="0.014721"/>
+<status status="PASS" start="2024-05-22T10:15:47.818835" elapsed="0.015742"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2024-05-21T14:31:24.275039" level="INFO">Argument types are:
+<msg time="2024-05-22T10:15:47.835419" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;class 'str'&gt;</msg>
 <arg>${response.status_code}</arg>
 <arg>200</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.274317" elapsed="0.000879"/>
+<status status="PASS" start="2024-05-22T10:15:47.834805" elapsed="0.000742"/>
 </kw>
 <doc>Check if the server responds to a GET request.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.258873" elapsed="0.016434"/>
+<status status="PASS" start="2024-05-22T10:15:47.818478" elapsed="0.017169"/>
 </kw>
 <kw name="Check The Man In The Middle Response with POST request">
 <kw name="POST" owner="RequestsLibrary">
-<msg time="2024-05-21T14:31:24.292770" level="INFO">POST Request : url=http://192.168.30.97:4444/ 
+<msg time="2024-05-22T10:15:47.849000" level="INFO">POST Request : url=http://192.168.30.97:4444/ 
  path_url=/ 
  headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '132'} 
  body={"frames":[{"events":[{"type":"motion","attributes":{"Event Type":"Enter Line","geometry_name":"sco 1","Event End":"Exit Line"}}]}]} 
  </msg>
-<msg time="2024-05-21T14:31:24.293057" level="INFO">POST Response : url=http://192.168.30.97:4444/ 
+<msg time="2024-05-22T10:15:47.849230" level="INFO">POST Response : url=http://192.168.30.97:4444/ 
  status=200, reason=OK 
- headers={'Server': 'BaseHTTP/0.6 Python/3.11.2', 'Date': 'Tue, 21 May 2024 12:31:24 GMT', 'Content-type': 'application/json'} 
+ headers={'Server': 'BaseHTTP/0.6 Python/3.11.2', 'Date': 'Wed, 22 May 2024 08:15:47 GMT', 'Content-type': 'application/json'} 
  body={"response": "OK"} 
  </msg>
-<msg time="2024-05-21T14:31:24.293264" level="INFO">Received POST request with data: {"frames":[{"events":[{"type":"motion","attributes":{"Event Type":"Enter Line","geometry_name":"sco 1","Event End":"Exit Line"}}]}]}</msg>
-<msg time="2024-05-21T14:31:24.293371" level="INFO">192.168.30.97 - - [21/May/2024 14:31:24] "POST / HTTP/1.1" 200 -</msg>
-<msg time="2024-05-21T14:31:24.293546" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2024-05-22T10:15:47.849394" level="INFO">Received POST request with data: {"frames":[{"events":[{"type":"motion","attributes":{"Event Type":"Enter Line","geometry_name":"sco 1","Event End":"Exit Line"}}]}]}</msg>
+<msg time="2024-05-22T10:15:47.849480" level="INFO">192.168.30.97 - - [22/May/2024 10:15:47] "POST / HTTP/1.1" 200 -</msg>
+<msg time="2024-05-22T10:15:47.849673" level="INFO">${response} = &lt;Response [200]&gt;</msg>
 <var>${response}</var>
 <arg>${RPi_client_endpoint}</arg>
 <arg>${live_data}</arg>
 <doc>Sends a POST request.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.276032" elapsed="0.017606"/>
+<status status="PASS" start="2024-05-22T10:15:47.836112" elapsed="0.013641"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2024-05-21T14:31:24.294803" level="INFO">Argument types are:
+<msg time="2024-05-22T10:15:47.850652" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;class 'str'&gt;</msg>
 <arg>${response.status_code}</arg>
 <arg>200</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.293902" elapsed="0.001094"/>
+<status status="PASS" start="2024-05-22T10:15:47.849975" elapsed="0.000813"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-05-21T14:31:24.295807" level="INFO">{"response": "OK"}</msg>
+<msg time="2024-05-22T10:15:47.851337" level="INFO">{"response": "OK"}</msg>
 <arg>${response.content}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.295228" elapsed="0.000734"/>
+<status status="PASS" start="2024-05-22T10:15:47.850961" elapsed="0.000476"/>
 </kw>
 <doc>Check if the server responds to a POST request.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.275698" elapsed="0.020398"/>
+<status status="PASS" start="2024-05-22T10:15:47.835873" elapsed="0.015653"/>
 </kw>
 <kw name="Check Server Response">
 <kw name="GET" owner="RequestsLibrary">
-<msg time="2024-05-21T14:31:24.300219" level="INFO">GET Request : url=http://192.168.31.24:3333/ 
+<msg time="2024-05-22T10:15:47.854075" level="INFO">GET Request : url=http://192.168.31.24:3333/ 
  path_url=/ 
  headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
  body=None 
  </msg>
-<msg time="2024-05-21T14:31:24.300480" level="INFO">GET Response : url=http://192.168.31.24:3333/ 
+<msg time="2024-05-22T10:15:47.854299" level="INFO">GET Response : url=http://192.168.31.24:3333/ 
  status=200, reason=OK 
- headers={'Server': 'BaseHTTP/0.6 Python/3.12.3', 'Date': 'Tue, 21 May 2024 12:31:24 GMT', 'Content-type': 'application/json'} 
+ headers={'Server': 'BaseHTTP/0.6 Python/3.12.3', 'Date': 'Wed, 22 May 2024 08:15:47 GMT', 'Content-type': 'application/json'} 
  body=Store tracker is running! 
  </msg>
-<msg time="2024-05-21T14:31:24.300628" level="INFO">192.168.31.24 - - [21/May/2024 14:31:24] "GET / HTTP/1.1" 200 -</msg>
-<msg time="2024-05-21T14:31:24.300806" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<msg time="2024-05-22T10:15:47.854470" level="INFO">192.168.31.24 - - [22/May/2024 10:15:47] "GET / HTTP/1.1" 200 -</msg>
+<msg time="2024-05-22T10:15:47.854680" level="INFO">${response} = &lt;Response [200]&gt;</msg>
 <var>${response}</var>
 <arg>${server_endpoint}</arg>
 <doc>Sends a GET request.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.296765" elapsed="0.004119"/>
+<status status="PASS" start="2024-05-22T10:15:47.851993" elapsed="0.002783"/>
 </kw>
 <kw name="Should Be Equal As Strings" owner="BuiltIn">
-<msg time="2024-05-21T14:31:24.302709" level="INFO">Argument types are:
+<msg time="2024-05-22T10:15:47.855398" level="INFO">Argument types are:
 &lt;class 'int'&gt;
 &lt;class 'str'&gt;</msg>
 <arg>${response.status_code}</arg>
 <arg>200</arg>
 <doc>Fails if objects are unequal after converting them to strings.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.301119" elapsed="0.001813"/>
+<status status="PASS" start="2024-05-22T10:15:47.854980" elapsed="0.000544"/>
 </kw>
 <doc>Check if the server responds to a GET request.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.296378" elapsed="0.006714"/>
+<status status="PASS" start="2024-05-22T10:15:47.851777" elapsed="0.003840"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2024-05-21T14:31:25.304351" level="INFO">Slept 1 second.</msg>
+<msg time="2024-05-22T10:15:48.856131" level="INFO">Slept 1 second.</msg>
 <arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.303875" elapsed="1.000711"/>
+<status status="PASS" start="2024-05-22T10:15:47.855779" elapsed="1.000596"/>
 </kw>
 <kw name="Stop Server">
 <kw name="Terminate Process" owner="Process">
-<msg time="2024-05-21T14:31:25.305541" level="INFO">Gracefully terminating process.</msg>
-<msg time="2024-05-21T14:31:25.305972" level="INFO">Process completed.</msg>
+<msg time="2024-05-22T10:15:48.857154" level="INFO">Gracefully terminating process.</msg>
+<msg time="2024-05-22T10:15:48.857490" level="INFO">Process completed.</msg>
 <arg>server</arg>
 <doc>Stops the process gracefully or forcefully.</doc>
-<status status="PASS" start="2024-05-21T14:31:25.305315" elapsed="0.000773"/>
+<status status="PASS" start="2024-05-22T10:15:48.856943" elapsed="0.000674"/>
 </kw>
 <doc>Stop the server process.</doc>
-<status status="PASS" start="2024-05-21T14:31:25.304999" elapsed="0.001187"/>
+<status status="PASS" start="2024-05-22T10:15:48.856684" elapsed="0.001032"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2024-05-21T14:31:25.306648" level="INFO">Server started and stopped successfully.</msg>
+<msg time="2024-05-22T10:15:48.858149" level="INFO">Server started and stopped successfully.</msg>
 <arg>Server started and stopped successfully.</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2024-05-21T14:31:25.306505" elapsed="0.000298"/>
+<status status="PASS" start="2024-05-22T10:15:48.857952" elapsed="0.000679"/>
 </kw>
 <doc>Test to start Store_tracker App and that the server stops  after 5 seconds of runtime.</doc>
-<status status="PASS" start="2024-05-21T14:31:24.233288" elapsed="1.073833"/>
+<status status="PASS" start="2024-05-22T10:15:47.793467" elapsed="1.065517"/>
 </test>
-<status status="PASS" start="2024-05-21T14:31:24.167615" elapsed="1.140303"/>
+<status status="PASS" start="2024-05-22T10:15:47.721235" elapsed="1.138393"/>
 </suite>
 <statistics>
 <total>
