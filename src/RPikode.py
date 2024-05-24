@@ -2,12 +2,13 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import http.client
 import socket
 # ! --------------------------------------------------------------------------------------------------------------------|
-# * in this class so I create a HTTP-server, which is lyssning to a specific IP and PORT. those are HOST_server and     |
+# * in this class so I create a HTTP-server, which is listening to a specific IP and PORT. those are HOST_server and     |
 # * PORT_AS_Server. So you may change those to the HOST_server and the PORT_as_server you need, you can also change the |
 # * HOST and the PORT to the Store Tracker IP and PORT. In this script all we do is  when the man in the middle server  |
-# *  get a GET or a POST request, it's send it forword to the "Main Server" which is using HOST and PORT_AS_Client      |
-# *  and when the server send some data, this data will be forword sended to the client as will                         |
+# *  get a GET or a POST request, it's send it forward to the "Main Server" which is using HOST and PORT_AS_Client      |
+# *  and when the server send some data, this data will be forward sended to the client as will                         |
 # !---------------------------------------------------------------------------------------------------------------------  
+
 
 
 HOST = '192.168.31.24'
