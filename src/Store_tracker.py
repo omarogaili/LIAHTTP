@@ -28,7 +28,7 @@ class Store_tracker (BaseHTTPRequestHandler):
             data = json.loads(post_data)
             if data.get('message') == 'no motion':
                 print(f"Received POST request with data: {post_data}")
-                self.send_response(500)
+                self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
                 self.wfile.write(json.dumps({"response": "no motion"}).encode())
