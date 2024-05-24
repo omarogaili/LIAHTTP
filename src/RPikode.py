@@ -1,27 +1,36 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import http.client
 import socket
+# ! --------------------------------------------------------------------------------------------------------------------|
+# * in this class so I create a HTTP-server, which is lyssning to a specific IP and PORT. those are HOST_server and     |
+# * PORT_AS_Server. So you may change those to the HOST_server and the PORT_as_server you need, you can also change the |
+# * HOST and the PORT to the Store Tracker IP and PORT. In this script all we do is  when the man in the middle server  |
+# *  get a GET or a POST request, it's send it forword to the "Main Server" which is using HOST and PORT_AS_Client      |
+# *  and when the server send some data, this data will be forword sended to the client as will                         |
+# !---------------------------------------------------------------------------------------------------------------------  
+
 
 HOST = '192.168.31.24'
-PORT_AS_SERVER = 4444
 PORT_AS_CLIENT = 3333
 HOST_Server='192.168.30.97'
+PORT_AS_SERVER = 4444
 
 class RPi_HTTPHandler(BaseHTTPRequestHandler):
+    # ! in do_GET method so we create a get request. create a connection with the "Main Server", get the response from the Main server and send it to the Client
     def do_GET(self):
         try:
-            if self.path == '/':
-                client = http.client.HTTPConnection(HOST, PORT_AS_CLIENT)
-                client.request('GET', self.path)   
+            if self.path == '/': #*   make a connection with just specific request. you can change it if you wont to response to all the requests  
+                client = http.client.HTTPConnection(HOST, PORT_AS_CLIENT) #! create an Connection with the "Main Server"
+                client.request('GET', self.path) 
                 response = client.getresponse()
                 self.send_response(response.status)    
-                for header, value in response.getheader():
-                    self.send_header(header, value)
+                for header, value in response.getheader(): 
+                    self.send_header(header, value) #! sending the header from the response which i get from the "Main Server"
                 self.end_headers()
                 data = response.read()
                 self.wfile.write(data)
                 client.close()
-        except Exception as e:
+        except Exception as e: #! Exception handling 
             self.send_response(500)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
