@@ -8,7 +8,8 @@ import socket
 # *  HOST and the PORT to the Store Tracker IP and PORT. In this script all we do is  when the man in the middle server  |
 # *  get a GET or a POST request, it's send it forward to the "Main Server" which is using HOST and PORT_AS_Client       |
 # *  and when the server send some data, this data will be forward sended to the client as will                          |
-# !---------------------------------------------------------------------------------------------------------------------  
+# ! --------------------------------------------------------------------------------------------------------------------|
+
 
 
 HOST = '192.168.31.24'
