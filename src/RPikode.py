@@ -1,13 +1,14 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import http.client
+import logging
 import socket
+# ! -------------------------------------------------------------------------------------------------------------------- |
+# *  in this class so I create a HTTP-server, which is listening to a specific IP and PORT. those are HOST_server and    |
+# *  PORT_AS_Server. So you may change those to the HOST_server and the PORT_as_server you need, you can also change the |
+# *  HOST and the PORT to the Store Tracker IP and PORT. In this script all we do is  when the man in the middle server  |
+# *  get a GET or a POST request, it's send it forward to the "Main Server" which is using HOST and PORT_AS_Client       |
+# *  and when the server send some data, this data will be forward sended to the client as will                          |
 # ! --------------------------------------------------------------------------------------------------------------------|
-# * in this class so I create a HTTP-server, which is listening to a specific IP and PORT. those are HOST_server and     |
-# * PORT_AS_Server. So you may change those to the HOST_server and the PORT_as_server you need, you can also change the |
-# * HOST and the PORT to the Store Tracker IP and PORT. In this script all we do is  when the man in the middle server  |
-# *  get a GET or a POST request, it's send it forward to the "Main Server" which is using HOST and PORT_AS_Client      |
-# *  and when the server send some data, this data will be forward sended to the client as will                         |
-# !---------------------------------------------------------------------------------------------------------------------  
 
 
 
@@ -22,7 +23,8 @@ class RPi_HTTPHandler(BaseHTTPRequestHandler):
         try:
             if self.path == '/': #*   make a connection with just specific request. you can change it if you wont to response to all the requests  
                 client = http.client.HTTPConnection(HOST, PORT_AS_CLIENT) #! create an Connection with the "Main Server"
-                client.request('GET', self.path) 
+                client.request('GET', self.path)
+                #!call the Logginghandler method here to log info
                 response = client.getresponse()
                 self.send_response(response.status)    
                 for header, value in response.getheader(): 
@@ -56,6 +58,10 @@ class RPi_HTTPHandler(BaseHTTPRequestHandler):
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write(f'Internal error: {str(e)}'.encode())
+    def LoggingHandler(self,request):
+        if request.method == 'GET':
+            logging.info(f'Received  GET request: {request.path}')
+
 
 def run_server():
     try:
